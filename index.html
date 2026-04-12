@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cryptographie classique — TP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#demo">Aller à la démo</a>
+
+  <header id="accueil" class="site-header">
+    <div class="site-header-inner">
+      <p class="site-institution">Université de Kinshasa</p>
+      <p class="site-faculty">Faculté des sciences et technologies</p>
+      <p class="site-course">Cours de cryptographie</p>
+      <p class="site-student">
+        <span class="site-student-label">Étudiant :</span> Tshiabela Muabu Gloria<br />
+        <span class="site-promo">Promotion L3 LMD — Mathématiques et informatique</span>
+      </p>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Navigation principale">
+    <a class="site-nav-link" href="#accueil">Accueil</a>
+    <a class="site-nav-link" href="#demo">Démo</a>
+  </nav>
+
+  <div id="demo" class="demo-section">
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="sidebar-title">Algorithme</p>
+        <nav class="algo-nav" aria-label="Choix de l’algorithme">
+          <button type="button" class="algo-btn is-active" data-algo="caesar">César</button>
+          <button type="button" class="algo-btn" data-algo="affine">Affine</button>
+          <button type="button" class="algo-btn" data-algo="vigenere">Vigenère</button>
+          <button type="button" class="algo-btn" data-algo="autokey">AutoKey</button>
+          <button type="button" class="algo-btn" data-algo="playfair">Playfair</button>
+        </nav>
+        <p class="sidebar-foot">TP interactif — chiffrement &amp; déchiffrement</p>
+      </aside>
+
+      <main class="main">
+        <header class="main-head">
+          <h2 class="page-title">Console de chiffrement classique</h2>
+          <span class="badge">A–Z uniquement · espaces conservés optionnellement</span>
+        </header>
+
+        <section class="panel">
+          <div id="algo-desc" class="algo-desc" role="region" aria-live="polite"></div>
+          <p id="playfair-hint" class="algo-hint hidden" role="note">
+            Après déchiffrement Playfair, le texte peut différer du message initial : lettres
+            doublées et longueur impaire ajoutent des <strong>X</strong> ; <strong>J</strong> devient
+            <strong>I</strong>. C’est normal pour cet algorithme.
+          </p>
+
+          <div id="key-panel" class="key-panel"></div>
+
+          <div id="playfair-grid-wrap" class="playfair-wrap hidden" aria-hidden="true">
+            <p class="grid-caption">Carré Playfair (5×5) — dérivé de la clé</p>
+            <div id="playfair-grid" class="playfair-grid"></div>
+          </div>
+
+          <div class="field-toolbar">
+            <label class="field field-grow">
+              <span class="field-label">Message (clair ou chiffré)</span>
+              <textarea id="message" rows="6" placeholder="Saisissez votre texte…" spellcheck="false"></textarea>
+            </label>
+            <button type="button" id="btn-reset-inputs" class="btn btn-outline btn-icon-label">
+              Réinitialiser
+            </button>
+          </div>
+
+          <div class="actions">
+            <button type="button" id="btn-encrypt" class="btn btn-primary">Chiffrer</button>
+            <button type="button" id="btn-decrypt" class="btn btn-ghost">Déchiffrer</button>
+          </div>
+
+          <div class="field-result-head">
+            <span class="field-label">Résultat</span>
+            <div class="field-result-actions">
+              <button type="button" id="btn-copy-result" class="btn btn-outline btn-sm">Copier</button>
+              <span id="copy-feedback" class="copy-feedback" aria-live="polite"></span>
+            </div>
+          </div>
+          <label class="field field-tight">
+            <textarea id="result" rows="6" readonly placeholder="Le résultat apparaît ici…" spellcheck="false" aria-label="Résultat du chiffrement ou déchiffrement"></textarea>
+          </label>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="crypto.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
